@@ -150,13 +150,6 @@ function buildb()
     initDb(function(err){});
   }
   var dbo = db.db("mydb3");
-  dbo.dropDatabase(function(err, result){
-    console.log("Error : "+err);
-    if (err) throw err;
-    console.log("Operation Success ? "+result);
-    // after all the operations with db, close it.
-    db.close();
-});
 var myobj = [
   {
      "Name":"chevrolet chevelle malibu",
