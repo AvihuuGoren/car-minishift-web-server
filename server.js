@@ -149,6 +149,7 @@ function buildb()
   if (!db) {
     initDb(function(err){});
   }
+  var dbo = db.collection('cars');
   var dbo = db.db("mydb3");
 var myobj = [
   {
@@ -4618,7 +4619,7 @@ var myobj = [
      "Origin":"USA"
   }
 ];
-dbo.collection("cars").insertMany(myobj, function(err, res) {
+dbo.insertMany(myobj, function(err, res) {
   if (err) throw err;
   console.log("Number of documents inserted: " + res.insertedCount);    
   db.close();
