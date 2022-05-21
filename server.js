@@ -72,7 +72,7 @@ var initDb = function(callback) {
     console.log('Connected to MongoDB at: %s', mongoURL);
     });
 };
-app.get ('builddb/',function(req,res){
+app.get ('/buildd',function(req,res){
   buildb();
 });
 app.get('/', function (req, res) {
