@@ -113,7 +113,7 @@ app.get('/pagecount', function (req, res) {
 app.get('/weighthGreaterThen/:weight', function (req, res, next) {
    
   if (!db) {
-    initDb(function(err){});
+    initDb(function(err){});o
   }
   MongoClient.connect(url, function(err, db) {
       if (err) throw err;
@@ -149,8 +149,7 @@ function buildb()
   if (!db) {
     initDb(function(err){});
   }
-  var dbo = db.collection('cars');
-  var dbo = db.db("mydb3");
+var dbo = db.collection('cars');
 var myobj = [
   {
      "Name":"chevrolet chevelle malibu",
