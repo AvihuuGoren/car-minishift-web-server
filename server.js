@@ -70,10 +70,11 @@ var initDb = function(callback) {
     dbDetails.type = 'MongoDB';
 
     console.log('Connected to MongoDB at: %s', mongoURL);
-    buildb(db);
-  });
+    });
 };
-
+app.get ('builddb/',function(req,res){
+  buildb();
+});
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
