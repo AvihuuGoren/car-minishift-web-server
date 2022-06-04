@@ -126,7 +126,6 @@ app.get('/weighthGreaterThen/:weight', function (req, res, next) {
         if (err) throw err;
         console.log(result);
         res.send(result)
-        db.close();
       });
     });
 })
@@ -4622,6 +4621,5 @@ var myobj = [
 dbo.insertMany(myobj, function(err, res) {
   if (err) throw err;
   console.log("Number of documents inserted: " + res.insertedCount);    
-  db.close();
 });
 }
