@@ -73,7 +73,7 @@ var initDb = function(callback) {
     });
 };
 app.get ('/buildd',function(req,res){
-  buildb();
+  return buildb();
 });
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
@@ -116,18 +116,19 @@ app.get('/weighthGreaterThen/:weight', function (req, res, next) {
   if (!db) {
     initDb(function(err){});o
   }
-  MongoClient.connect(url, function(err, db) {
-      if (err) throw err;
-      var dbo = db.db("mydb3");
+  if (db) {
+   var dbo = db.db("mydb3");
       console.log(req.params.weight);
       var query = { Weight_in_lbs: {$gt:Number(req.params.weight)}};
       console.log(query)
       dbo.collection("cars").find(query).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
-        res.send(result)
-      });
-    });
+        res.send(result);
+   });
+ } else {
+   res.send('no db');
+ }
 })
 
 // error handling
@@ -4620,6 +4621,7 @@ var myobj = [
 ];
 dbo.insertMany(myobj, function(err, res) {
   if (err) throw err;
-  console.log("Number of documents inserted: " + res.insertedCount);    
+  console.log("Number of documents inserted: " + res.insertedCount);
+  return res.status(200).send('Inserted');   
 });
 }
