@@ -4632,10 +4632,10 @@ app.get ('/buildd',function(req,res){
          "Origin":"USA"
       }
     ];
-    dbo.insertMany(myobj, function(err, res) {
+    dbo.insertMany(myobj, function(err, result) {
       if (err) throw err;
-      console.log("Number of documents inserted: " + res.insertedCount);
-      return res.send('Inserted');
+      console.log("Number of documents inserted: " + result.insertedCount);
+      return res.send('Inserted' + result);
     });
     }
       
