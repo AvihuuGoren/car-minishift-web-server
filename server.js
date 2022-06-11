@@ -131,11 +131,10 @@ app.get('/weighthGreaterThen/:weight', function (req, res) {
     initDb(function(err){});
   }
   if (db) {
-   var dbo = db.db("mydb3");
       console.log(req.params.weight);
       var query = { Weight_in_lbs: {$gt:Number(req.params.weight)}};
       console.log(query)
-      dbo.collection("cars").find(query).toArray(function(err, result) {
+      db.collection("cars").find(query).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
         res.send(result);
