@@ -4635,7 +4635,7 @@ app.get ('/buildd',function(req,res){
     dbo.insertMany(myobj, function(err, res) {
       if (err) throw err;
       console.log("Number of documents inserted: " + res.insertedCount);
-      return res.status(200).send('Inserted');   
+      return res.send('Inserted');
     });
     }
       
