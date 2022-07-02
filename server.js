@@ -125,7 +125,7 @@ app.get('/countcars', function (req, res) {
 });
 
 
-app.get('/weighthGreaterThen/:weight', function (req, res) {
+app.get('/wGreater/:weight', function (req, res) {
    
   if (!db) {
     initDb(function(err){});
@@ -143,6 +143,140 @@ app.get('/weighthGreaterThen/:weight', function (req, res) {
    res.send('no db');
  }
 })
+
+app.get('/wLower/:weight', function (req, res) {
+   
+   if (!db) {
+     initDb(function(err){});
+   }
+   if (db) {
+       console.log(req.params.weight);
+       var query = { Weight_in_lbs: {$lt:Number(req.params.weight)}};
+       console.log(query)
+       db.collection("cars").find(query).toArray(function(err, result) {
+         if (err) throw err;
+         console.log(result);
+         res.send(result);
+    });
+  } else {
+    res.send('no db');
+  }
+ })
+
+ app.get('/hpGreater/:hp', function (req, res) {
+   
+   if (!db) {
+     initDb(function(err){});
+   }
+   if (db) {
+       console.log(req.params.hp);
+       var query = { Horsepower: {$gt:Number(req.params.hp)}};
+       console.log(query)
+       db.collection("cars").find(query).toArray(function(err, result) {
+         if (err) throw err;
+         console.log(result);
+         res.send(result);
+    });
+  } else {
+    res.send('no db');
+  }
+ })
+
+ app.get('/hpLower/:hp', function (req, res) {
+   
+   if (!db) {
+     initDb(function(err){});
+   }
+   if (db) {
+       console.log(req.params.hp);
+       var query = { Horsepower: {$lt:Number(req.params.hp)}};
+       console.log(query)
+       db.collection("cars").find(query).toArray(function(err, result) {
+         if (err) throw err;
+         console.log(result);
+         res.send(result);
+    });
+  } else {
+    res.send('no db');
+  }
+ })
+
+ app.get('/cylGreater/:cyl', function (req, res) {
+   
+   if (!db) {
+     initDb(function(err){});
+   }
+   if (db) {
+       console.log(req.params.cyl);
+       var query = { Cylinders: {$gt:Number(req.params.cyl)}};
+       console.log(query)
+       db.collection("cars").find(query).toArray(function(err, result) {
+         if (err) throw err;
+         console.log(result);
+         res.send(result);
+    });
+  } else {
+    res.send('no db');
+  }
+ })
+
+ app.get('/cylLower/:cyl', function (req, res) {
+   
+   if (!db) {
+     initDb(function(err){});
+   }
+   if (db) {
+       console.log(req.params.cyl);
+       var query = { Cylinders: {$lt:Number(req.params.cyl)}};
+       console.log(query)
+       db.collection("cars").find(query).toArray(function(err, result) {
+         if (err) throw err;
+         console.log(result);
+         res.send(result);
+    });
+  } else {
+    res.send('no db');
+  }
+ })
+
+ app.get('/mpgGreater/:mpg', function (req, res) {
+   
+   if (!db) {
+     initDb(function(err){});
+   }
+   if (db) {
+       console.log(req.params.mpg);
+       var query = { Miles_per_Gallon: {$gt:Number(req.params.mpg)}};
+       console.log(query)
+       db.collection("cars").find(query).toArray(function(err, result) {
+         if (err) throw err;
+         console.log(result);
+         res.send(result);
+    });
+  } else {
+    res.send('no db');
+  }
+ })
+
+ app.get('/mpgLower/:mpg', function (req, res) {
+   
+   if (!db) {
+     initDb(function(err){});
+   }
+   if (db) {
+       console.log(req.params.mpg);
+       var query = { Miles_per_Gallon: {$lt:Number(req.params.mpg)}};
+       console.log(query)
+       db.collection("cars").find(query).toArray(function(err, result) {
+         if (err) throw err;
+         console.log(result);
+         res.send(result);
+    });
+  } else {
+    res.send('no db');
+  }
+ })
+
 
 // error handling
 app.use(function(err, req, res, next){
@@ -4635,7 +4769,7 @@ app.get ('/buildd',function(req,res){
     dbo.insertMany(myobj, function(err, result) {
       if (err) throw err;
       console.log("Number of documents inserted: " + result.insertedCount);
-      return res.send('Inserted' + result);
+      return res.send('Inserted' + result.insertedCount);
     });
     }
       
